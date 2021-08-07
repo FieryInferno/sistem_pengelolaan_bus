@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Member;
+
 class MemberController extends Controller
 {
   
+  private $member;
+
+  public function __construct()
+  {
+    $this->member = new Member;
+  }
+  
+  
   public function index()
   {
-      //
+    $data['member'] = $this->member->get();
+    return view('member', $data);
   }
 
     /**
