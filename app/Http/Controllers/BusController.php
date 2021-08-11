@@ -59,15 +59,12 @@ class BusController extends Controller
 
     return redirect('/bus_masuk')->with('status', 'Berhasil menambah data');
   }
+  
+  public function destroy($id)
+  {
+    $bus  = $this->bus->find($id);
+    $bus->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    return redirect('/bus_masuk')->with('status', 'Berhasil hapus data');
+  }
 }

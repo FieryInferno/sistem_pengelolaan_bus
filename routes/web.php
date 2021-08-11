@@ -27,5 +27,6 @@ Route::middleware('login')->group(function () {
     Route::post('/tambah', [BusController::class, 'store']);
     Route::get('/edit/{id}', [BusController::class, 'edit']);
     Route::put('/edit/{id}', [BusController::class, 'update']);
+    Route::delete('/hapus/{id}', [BusController::class, 'destroy']);
   });
 });
