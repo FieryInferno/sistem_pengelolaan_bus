@@ -14,5 +14,7 @@ Route::middleware('login')->group(function () {
     Route::get('/', [MemberController::class, 'index']);
     Route::get('/tambah', [MemberController::class, 'create']);
     Route::post('/tambah', [MemberController::class, 'store']);
+    Route::get('/edit/{id_member}', [MemberController::class, 'edit']);
+    Route::put('/edit/{id_member}', [MemberController::class, 'update']);
   });
 });

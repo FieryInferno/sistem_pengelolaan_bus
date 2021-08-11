@@ -40,40 +40,27 @@ class MemberController extends Controller
 
     return redirect('/member')->with('status', 'Berhasil Tambah Member');
   }
+  
+  public function edit($id_member)
+  {
+    $member = $this->member->find($id_member);
+    return view('/editMember', $member);
+  }
+  
+  public function update(Request $request, $id_member)
+  {
+    $validate = $request->validate([
+      'nama_member' => 'required',
+      'nama_po'     => 'required'
+    ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    $member               = $this->member->find($id_member);
+    $member->nama_member  = $request->nama_member;
+    $member->nama_po      = $request->nama_po; 
+    $member->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    return redirect('/member')->with('status', 'Berhasil Edit Member');
+  }
 
     /**
      * Remove the specified resource from storage.
