@@ -4,13 +4,14 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class login
 {
   
   public function handle(Request $request, Closure $next)
   {
-    if (!auth()->user()->username) {
+    if (!Auth::check()) {
       abort(404);
     }
     

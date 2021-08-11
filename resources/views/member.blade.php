@@ -31,29 +31,38 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Foto</th>
-                      <th>Nama</th>
-                      <th>Nama PO</th>
-                      <th>#</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($member as $m)
+                <a href="/member/tambah" class="btn btn-primary">Tambah</a>
+                @if (session('status'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
+                <div class="table-responsive">
+                  <table id="example1" class="table table-bordered table-hover">
+                    <thead>
                       <tr>
-                        <td><img src="{{ asset('foto_member' . $m->foto) }}" alt=""></td>
-                        <td>{{ $m->nama }}</td>
-                        <td>{{ $m->nama_po }}</td>
-                        <td>
-                          <a href="/member/edit/{{ $m->id }}" class="btn btn-success">Edit</a>
-                          <a href="/member/hapus/{{ $m->id }}" class="btn btn-danger">Hapus</a>
-                        </td>
+                        <th>Nama Member</th>
+                        <th>Nama PO</th>
+                        <th>#</th>
                       </tr>
-                    @endforeach
-                  </tbody>                
-                </table>
+                    </thead>
+                    <tbody>
+                      @foreach ($member as $m)
+                        <tr>
+                          <td>{{ $m->nama_member }}</td>
+                          <td>{{ $m->nama_po }}</td>
+                          <td>
+                            <a href="/member/edit/{{ $m->id }}" class="btn btn-success">Edit</a>
+                            <a href="/member/hapus/{{ $m->id }}" class="btn btn-danger">Hapus</a>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>                
+                  </table>
+                </div>
               </div>
               <!-- /.card-body -->
             </div>

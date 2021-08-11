@@ -10,5 +10,9 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::middleware('login')->group(function () {
   Route::get('/dashboard', [AdminController::class, 'index']);
-  Route::get('/member', [MemberController::class, 'index']);
+  Route::prefix('member')->group(function () {
+    Route::get('/', [MemberController::class, 'index']);
+    Route::get('/tambah', [MemberController::class, 'create']);
+    Route::post('/tambah', [MemberController::class, 'store']);
+  });
 });

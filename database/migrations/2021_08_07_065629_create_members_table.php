@@ -13,7 +13,6 @@ class CreateMembersTable extends Migration
       $table->id();
       $table->string('nama_member');
       $table->string('nama_po');
-      $table->string('foto');
       $table->timestamps();
     });
   }

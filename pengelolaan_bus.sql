@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Agu 2021 pada 10.06
+-- Waktu pembuatan: 11 Agu 2021 pada 02.38
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.6
 
@@ -47,10 +47,16 @@ CREATE TABLE `member` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_member` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_po` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `member`
+--
+
+INSERT INTO `member` (`id`, `nama_member`, `nama_po`, `created_at`, `updated_at`) VALUES
+(1, 'Rezza Firmansyah', 'Sinar Jaya', '2021-08-10 17:36:24', '2021-08-10 17:36:24');
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`

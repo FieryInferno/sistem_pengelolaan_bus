@@ -21,27 +21,25 @@ class MemberController extends Controller
     $data['member'] = $this->member->get();
     return view('member', $data);
   }
+  
+  public function create()
+  {
+    return view('tambahMember');
+  }
+  
+  public function store(Request $request)
+  {
+    $validate = $request->validate([
+      'nama_member' => 'required',
+      'nama_po'     => 'required'
+    ]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    $this->member->nama_member  = $request->nama_member;
+    $this->member->nama_po      = $request->nama_po;
+    $this->member->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return redirect('/member')->with('status', 'Berhasil Tambah Member');
+  }
 
     /**
      * Display the specified resource.
