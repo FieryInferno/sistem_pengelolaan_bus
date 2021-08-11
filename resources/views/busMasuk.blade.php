@@ -51,11 +51,32 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+                        function tgl_indo($tanggal){
+                          $bulan = array (
+                            1 =>   'Januari',
+                            'Februari',
+                            'Maret',
+                            'April',
+                            'Mei',
+                            'Juni',
+                            'Juli',
+                            'Agustus',
+                            'September',
+                            'Oktober',
+                            'November',
+                            'Desember'
+                          );
+                          $pecahkan = explode('-', $tanggal);
+                          
+                          return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+                        }
+                      ?>
                       @foreach ($bus as $m)
                         <tr>
                           <td>{{ $m->member->nama_member }}</td>
                           <td>{{ $m->member->nama_po }}</td>
-                          <td>{{ $m->tanggal_masuk }}</td>
+                          <td>{{ tgl_indo($m->tanggal_masuk) }}</td>
                           <td>
                             <a href="/bus_masuk/edit/{{ $m->id }}" class="btn btn-success">Edit</a>
                             <!-- Button trigger modal -->

@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bus;
+use App\Models\Member;
 
 class BusController extends Controller
 {
   private $bus;
+  private $member;
+
   public function __construct()
   {
-    $this->bus  = new Bus;    
+    $this->bus    = new Bus;
+    $this->member = new Member;    
   }
   
   public function index()
@@ -18,27 +22,26 @@ class BusController extends Controller
     $data['bus']  = $this->bus->get();
     return view('busMasuk', $data);
   }
+  
+  public function create()
+  {
+    $data['member'] = $this->member->get();
+    return view('tambahBusMasuk', $data);
+  }
+  
+  public function store(Request $request)
+  {
+    $validate = $request->validate([
+      'member_id'     => 'required',
+      'tanggal_masuk' => 'required'
+    ]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    $this->bus->member_id     = $request->member_id;
+    $this->bus->tanggal_masuk = $request->tanggal_masuk;
+    $this->bus->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return redirect('/bus_masuk')->with('status', 'Berhasil Menambah Data');
+  }
 
     /**
      * Display the specified resource.

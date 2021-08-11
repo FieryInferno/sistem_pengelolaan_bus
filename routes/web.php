@@ -23,5 +23,7 @@ Route::middleware('login')->group(function () {
 
   Route::prefix('bus_masuk')->group(function () {
     Route::get('/', [BusController::class, 'index']);
+    Route::get('/tambah', [BusController::class, 'create']);
+    Route::post('/tambah', [BusController::class, 'store']);
   });
 });

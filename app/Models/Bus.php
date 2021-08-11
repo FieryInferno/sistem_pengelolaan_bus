@@ -12,6 +12,6 @@ class Bus extends Model
 
     public function member()
     {
-      return $this-hasOne(Member::class, 'id', 'member_id');
+      return $this->hasOne(Member::class, 'id', 'member_id');
     }
 }
