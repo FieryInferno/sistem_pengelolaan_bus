@@ -61,15 +61,11 @@ class MemberController extends Controller
 
     return redirect('/member')->with('status', 'Berhasil Edit Member');
   }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
+  public function destroy($id_member)
+  {
+    $member = $this->member->find($id_member);
+    $member->delete();
+    return redirect('/member')->with('status', 'Berhasil Hapus Member');
+  }
 }

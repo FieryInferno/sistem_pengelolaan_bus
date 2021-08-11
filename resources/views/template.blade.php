@@ -82,14 +82,14 @@
             </li>
             <li class="nav-item">
               <a href="/member" class="nav-link">
-                <i class="nav-icon fas fa-people"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
                   Data Member
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
+              <a href="/bus_masuk" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Data Bus Masuk
