@@ -25,5 +25,7 @@ Route::middleware('login')->group(function () {
     Route::get('/', [BusController::class, 'index']);
     Route::get('/tambah', [BusController::class, 'create']);
     Route::post('/tambah', [BusController::class, 'store']);
+    Route::get('/edit/{id}', [BusController::class, 'edit']);
+    Route::put('/edit/{id}', [BusController::class, 'update']);
   });
 });

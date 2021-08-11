@@ -42,40 +42,23 @@ class BusController extends Controller
 
     return redirect('/bus_masuk')->with('status', 'Berhasil Menambah Data');
   }
+  
+  public function edit($id)
+  {
+    $data           = $this->bus->find($id);
+    $data['member'] = $this->member->get();
+    return view('editBusMasuk', $data);
+  }
+  
+  public function update(Request $request, $id)
+  {
+    $bus  = $this->bus->find($id);
+    $bus->member_id     = $request->member_id;
+    $bus->tanggal_masuk = $request->tanggal_masuk;
+    $bus->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    return redirect('/bus_masuk')->with('status', 'Berhasil menambah data');
+  }
 
     /**
      * Remove the specified resource from storage.
