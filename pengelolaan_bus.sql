@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Agu 2021 pada 02.38
+-- Waktu pembuatan: 11 Agu 2021 pada 05.07
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.6
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `pengelolaan_bus`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bus`
+--
+
+CREATE TABLE `bus` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `member_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -51,13 +65,6 @@ CREATE TABLE `member` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `member`
---
-
-INSERT INTO `member` (`id`, `nama_member`, `nama_po`, `created_at`, `updated_at`) VALUES
-(1, 'Rezza Firmansyah', 'Sinar Jaya', '2021-08-10 17:36:24', '2021-08-10 17:36:24');
-
 -- --------------------------------------------------------
 
 --
@@ -78,7 +85,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2021_08_07_065629_create_members_table', 2);
+(4, '2021_08_07_065629_create_members_table', 2),
+(5, '2021_08_11_024205_create_buses_table', 3);
 
 -- --------------------------------------------------------
 
@@ -118,6 +126,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `updated_at`) V
 --
 
 --
+-- Indeks untuk tabel `bus`
+--
+ALTER TABLE `bus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -153,6 +167,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `bus`
+--
+ALTER TABLE `bus`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -168,7 +188,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
