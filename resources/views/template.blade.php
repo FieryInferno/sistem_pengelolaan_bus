@@ -155,7 +155,6 @@
   <script src="{{ asset('js/demo.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
-  <script src="{{ asset('js/dashboard3.js') }}"></script>
   <!-- DataTables  & Plugins -->
   <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
@@ -167,7 +166,89 @@
         "responsive"    : true, 
         "lengthChange"  : false, 
         "autoWidth"     : false
-      });
+      });var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode      = 'index'
+  var intersect = true
+
+  var $salesChart = $('#sales-chart')
+  // eslint-disable-next-line no-unused-vars
+  var bus     = [];
+  var member  = [];
+  @foreach ($grafikBus as $g)
+    bus.push({{ $g }});
+  @endforeach
+
+  @foreach ($grafikMember as $m)
+    member.push({{ $m }});
+  @endforeach
+  
+  var salesChart  = new Chart($salesChart, {
+    type  : 'bar',
+    data  : {
+      labels    : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+      datasets  : [
+        {
+          backgroundColor : '#007bff',
+          borderColor     : '#007bff',
+          data            : member
+        },
+        {
+          backgroundColor : '#ced4da',
+          borderColor     : '#ced4da',
+          data            : bus
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 1000) {
+                value /= 1000
+                value += 'k'
+              }
+
+              return value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
     });
   </script>
 </body>
